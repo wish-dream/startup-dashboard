@@ -1,1 +1,1175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>나의 브랜드 창업 로드맵</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=DM+Serif+Display:ital@0;1&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F3EE;
+    --warm-white: #FDFAF7;
+    --dusty-rose: #D4A5A5;
+    --terracotta: #C17B5C;
+    --deep-brown: #3D2B1F;
+    --sage: #8FA68E;
+    --muted-gold: #C9A96E;
+    --light-sage: #E8EDE7;
+    --charcoal: #2C2C2C;
+    --soft-gray: #9E9E9E;
+    --border: rgba(61,43,31,0.1);
+  }
 
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    background: var(--cream);
+    color: var(--deep-brown);
+    font-family: 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--deep-brown);
+    padding: 28px 20px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(201,169,110,0.15);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; left: 30px;
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: rgba(212,165,165,0.12);
+  }
+  .header-eyebrow {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    color: var(--muted-gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .header-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--warm-white);
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .header-title em {
+    font-style: italic;
+    color: var(--dusty-rose);
+  }
+  .header-sub {
+    font-size: 12px;
+    color: rgba(253,250,247,0.5);
+    font-weight: 300;
+    margin-top: 6px;
+  }
+
+  /* ── TODAY CARD ── */
+  .today-section {
+    padding: 20px 16px 0;
+  }
+  .today-card {
+    background: var(--deep-brown);
+    border-radius: 20px;
+    padding: 22px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .today-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 120px; height: 120px;
+    background: radial-gradient(circle, rgba(201,169,110,0.2) 0%, transparent 70%);
+  }
+  .today-label {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    color: var(--muted-gold);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .today-date {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--warm-white);
+    margin-bottom: 16px;
+  }
+  .today-tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .today-task {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .today-task.done {
+    opacity: 0.45;
+  }
+  .task-check {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 1.5px solid var(--muted-gold);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    background: transparent;
+  }
+  .today-task.done .task-check {
+    background: var(--muted-gold);
+    border-color: var(--muted-gold);
+  }
+  .task-check svg { display: none; }
+  .today-task.done .task-check svg { display: block; }
+  .task-text {
+    font-size: 13px;
+    color: var(--warm-white);
+    font-weight: 400;
+    line-height: 1.4;
+    flex: 1;
+  }
+  .task-time {
+    font-size: 10px;
+    color: var(--muted-gold);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .today-task.done .task-text { text-decoration: line-through; }
+
+  /* ── PROGRESS BAR ── */
+  .progress-section {
+    padding: 20px 16px 0;
+  }
+  .progress-card {
+    background: var(--warm-white);
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid var(--border);
+  }
+  .progress-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  .progress-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--soft-gray);
+  }
+  .progress-pct {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--terracotta);
+  }
+  .progress-bar-bg {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--terracotta), var(--muted-gold));
+    border-radius: 3px;
+    transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+  }
+  .phase-dots {
+    display: flex;
+    gap: 6px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+  .phase-dot {
+    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  .phase-dot.active {
+    background: var(--terracotta);
+    color: white;
+  }
+  .phase-dot.done {
+    background: var(--light-sage);
+    color: var(--sage);
+  }
+  .phase-dot.upcoming {
+    background: var(--cream);
+    color: var(--soft-gray);
+    border: 1px solid var(--border);
+  }
+
+  /* ── ROUTINE ── */
+  .section-header {
+    padding: 28px 16px 12px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--deep-brown);
+  }
+  .section-badge {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--soft-gray);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .routine-grid {
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .routine-card {
+    border-radius: 18px;
+    padding: 18px 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .routine-card.weekday {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    grid-column: span 2;
+  }
+  .routine-card.weekend {
+    background: var(--deep-brown);
+    color: var(--warm-white);
+  }
+  .routine-card-label {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .routine-card.weekday .routine-card-label { color: var(--soft-gray); }
+  .routine-card.weekend .routine-card-label { color: var(--muted-gold); }
+  .routine-card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .routine-card.weekend .routine-card-title { color: var(--warm-white); }
+  .routine-items {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .routine-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .routine-item-time {
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+    padding-top: 1px;
+  }
+  .routine-card.weekday .routine-item-time { color: var(--terracotta); }
+  .routine-card.weekend .routine-item-time { color: var(--muted-gold); }
+  .routine-card.weekday .routine-item { color: var(--charcoal); }
+  .routine-card.weekend .routine-item { color: rgba(253,250,247,0.8); }
+
+  .tip-card {
+    background: linear-gradient(135deg, var(--dusty-rose), var(--terracotta));
+    border-radius: 18px;
+    padding: 18px 16px;
+    color: white;
+  }
+  .tip-card .routine-card-label { color: rgba(255,255,255,0.7); }
+  .tip-card .routine-card-title { color: white; font-size: 15px; margin-bottom: 8px; }
+  .tip-card p { font-size: 12px; color: rgba(255,255,255,0.85); line-height: 1.6; }
+
+  /* ── ROADMAP ── */
+  .roadmap-container {
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .phase-item {
+    display: flex;
+    gap: 0;
+    cursor: pointer;
+  }
+  .phase-line-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40px;
+    flex-shrink: 0;
+  }
+  .phase-dot-circle {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    transition: all 0.3s;
+    margin-top: 4px;
+  }
+  .phase-dot-circle.active {
+    background: var(--terracotta);
+    color: white;
+    box-shadow: 0 0 0 4px rgba(193,123,92,0.2);
+  }
+  .phase-dot-circle.upcoming {
+    background: var(--cream);
+    color: var(--soft-gray);
+    border: 2px solid var(--border);
+  }
+  .phase-dot-circle.completed {
+    background: var(--sage);
+    color: white;
+  }
+  .phase-connector {
+    width: 2px;
+    flex: 1;
+    min-height: 16px;
+    background: var(--border);
+    margin: 4px 0;
+  }
+  .phase-content {
+    flex: 1;
+    padding: 4px 0 20px 12px;
+  }
+  .phase-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .phase-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--deep-brown);
+  }
+  .phase-duration {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: var(--light-sage);
+    color: var(--sage);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .phase-duration.active-badge {
+    background: rgba(193,123,92,0.15);
+    color: var(--terracotta);
+  }
+  .phase-desc {
+    font-size: 12px;
+    color: var(--soft-gray);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .phase-tasks-list {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    padding-top: 4px;
+  }
+  .phase-tasks-list.open {
+    display: flex;
+  }
+  .phase-task-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--charcoal);
+    line-height: 1.4;
+  }
+  .phase-task-item::before {
+    content: '→';
+    color: var(--terracotta);
+    font-size: 11px;
+    padding-top: 1px;
+    flex-shrink: 0;
+  }
+  .expand-btn {
+    font-size: 11px;
+    color: var(--terracotta);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  .expand-icon {
+    transition: transform 0.2s;
+    display: inline-block;
+  }
+  .phase-item.expanded .expand-icon {
+    transform: rotate(90deg);
+  }
+
+  /* ── WEEKLY TRACKER ── */
+  .tracker-card {
+    margin: 0 16px;
+    background: var(--warm-white);
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid var(--border);
+  }
+  .tracker-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+  .week-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .week-day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .week-day-label {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--soft-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .week-day-dot {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1.5px solid var(--border);
+    background: var(--cream);
+    color: var(--soft-gray);
+    font-weight: 600;
+  }
+  .week-day-dot.today {
+    border-color: var(--terracotta);
+    color: var(--terracotta);
+    background: rgba(193,123,92,0.08);
+  }
+  .week-day-dot.done {
+    background: var(--sage);
+    border-color: var(--sage);
+    color: white;
+  }
+  .week-day-dot.missed {
+    background: var(--cream);
+    border-color: var(--border);
+    color: var(--border);
+    opacity: 0.5;
+  }
+  .streak-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 14px;
+    background: var(--cream);
+    border-radius: 12px;
+  }
+  .streak-fire { font-size: 20px; }
+  .streak-text { font-size: 12px; color: var(--deep-brown); }
+  .streak-text strong { font-weight: 700; color: var(--terracotta); }
+
+  /* ── BOTTOM NAV ── */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--deep-brown);
+    display: flex;
+    padding: 10px 0 max(10px, env(safe-area-inset-bottom));
+    z-index: 100;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    padding: 4px 0;
+    opacity: 0.45;
+    transition: opacity 0.2s;
+  }
+  .nav-item.active { opacity: 1; }
+  .nav-icon { font-size: 18px; }
+  .nav-label {
+    font-size: 9px;
+    color: var(--warm-white);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  .nav-item.active .nav-label { color: var(--muted-gold); }
+
+  /* ── PAGES ── */
+  .page { display: none; padding-bottom: 90px; }
+  .page.active { display: block; }
+
+  /* ── NOTE PAGE ── */
+  .note-grid {
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .note-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .note-card:active { transform: scale(0.97); }
+  .note-card.accent {
+    background: var(--deep-brown);
+    color: var(--warm-white);
+    grid-column: span 2;
+  }
+  .note-card-icon { font-size: 22px; margin-bottom: 8px; }
+  .note-card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .note-card.accent .note-card-title { color: var(--warm-white); }
+  .note-card-desc { font-size: 11px; color: var(--soft-gray); line-height: 1.4; }
+  .note-card.accent .note-card-desc { color: rgba(253,250,247,0.55); }
+
+  .note-textarea {
+    width: 100%;
+    min-height: 120px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    color: var(--deep-brown);
+    background: var(--warm-white);
+    resize: none;
+    outline: none;
+    line-height: 1.6;
+    display: block;
+  }
+  .note-textarea:focus { border-color: var(--terracotta); }
+  .note-section { padding: 0 16px; margin-bottom: 14px; }
+  .note-section-title { font-size: 11px; font-weight: 700; color: var(--soft-gray); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+
+  .save-btn {
+    display: block;
+    margin: 0 16px;
+    width: calc(100% - 32px);
+    padding: 16px;
+    background: var(--deep-brown);
+    color: var(--warm-white);
+    border: none;
+    border-radius: 14px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .save-btn:active { transform: scale(0.98); opacity: 0.85; }
+
+  /* ── animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .page.active > * {
+    animation: fadeUp 0.4s ease both;
+  }
+  .page.active > *:nth-child(2) { animation-delay: 0.05s; }
+  .page.active > *:nth-child(3) { animation-delay: 0.1s; }
+  .page.active > *:nth-child(4) { animation-delay: 0.15s; }
+  .page.active > *:nth-child(5) { animation-delay: 0.2s; }
+
+  .spacer { height: 20px; }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════ PAGE 1: HOME ════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <div class="header">
+    <div class="header-eyebrow">My Brand Journey</div>
+    <div class="header-title">오늘도 한 걸음,<br><em>내 브랜드</em>를 향해</div>
+    <div class="header-sub">8년 경력 디자이너 → 브랜드 창업자</div>
+  </div>
+
+  <!-- Today Card -->
+  <div class="today-section">
+    <div class="today-card">
+      <div class="today-label">Today's Mission</div>
+      <div class="today-date" id="today-date"></div>
+      <div class="today-tasks" id="today-tasks"></div>
+    </div>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-section">
+    <div class="progress-card">
+      <div class="progress-top">
+        <div class="progress-label">전체 진행률</div>
+        <div class="progress-pct" id="progress-pct">5%</div>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-bar" style="width:5%"></div>
+      </div>
+      <div class="phase-dots">
+        <span class="phase-dot active">① 루틴 정착</span>
+        <span class="phase-dot upcoming">② 브랜드 기획</span>
+        <span class="phase-dot upcoming">③ 샘플 제작</span>
+        <span class="phase-dot upcoming">④ 론칭</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Routine -->
+  <div class="section-header">
+    <div class="section-title">나의 창업 루틴</div>
+    <div class="section-badge">Daily Routine</div>
+  </div>
+
+  <div class="routine-grid">
+    <div class="routine-card weekday">
+      <div class="routine-card-label">평일 루틴 (Mon–Fri)</div>
+      <div class="routine-card-title">딱 1시간, 10–11시</div>
+      <div class="routine-items">
+        <div class="routine-item">
+          <span class="routine-item-time">10:00</span>
+          <span>뷰티 블로그 예약발행 확인 or 간단 피드 업로드 (10분)</span>
+        </div>
+        <div class="routine-item">
+          <span class="routine-item-time">10:10</span>
+          <span>창업 노트에 오늘 할 것 1가지 작성 후 실행 (40분)</span>
+        </div>
+        <div class="routine-item">
+          <span class="routine-item-time">10:50</span>
+          <span>진행 상황 체크 + 내일 할 것 1줄 메모 (10분)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="routine-card weekend">
+      <div class="routine-card-label">토요일</div>
+      <div class="routine-card-title">집중<br>작업일</div>
+      <div class="routine-items">
+        <div class="routine-item">
+          <span class="routine-item-time">오전</span>
+          <span>2–3시간 딥워크 (디자인 시안·조사)</span>
+        </div>
+        <div class="routine-item">
+          <span class="routine-item-time">오후</span>
+          <span>레퍼런스 수집·무드보드</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="routine-card weekend">
+      <div class="routine-card-label">일요일</div>
+      <div class="routine-card-title">리뷰<br>& 계획</div>
+      <div class="routine-items">
+        <div class="routine-item">
+          <span class="routine-item-time">1시간</span>
+          <span>이번 주 회고 + 다음 주 할 일 3가지 세팅</span>
+        </div>
+        <div class="routine-item">
+          <span class="routine-item-time">여유</span>
+          <span>쉬기! 번아웃 방지 필수</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-card" style="grid-column: span 2;">
+      <div class="routine-card-label">핵심 원칙</div>
+      <div class="routine-card-title">📌 하루 1가지 원칙</div>
+      <p>평일엔 딱 1가지만 해. "오늘은 경쟁 브랜드 3개 분석", "오늘은 브랜드 이름 후보 10개 적기" — 작아도 매일 하면 3개월 뒤 완전히 달라져 있어.</p>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+</div>
+
+
+<!-- ════════════════════════════ PAGE 2: ROADMAP ════════════════════════════ -->
+<div class="page" id="page-roadmap">
+
+  <div class="header">
+    <div class="header-eyebrow">Step by Step</div>
+    <div class="header-title">창업 <em>로드맵</em></div>
+    <div class="header-sub">재직 중 → 런칭까지 6단계</div>
+  </div>
+
+  <div class="section-header" style="padding-top:20px;">
+    <div class="section-title">단계별 계획</div>
+    <div class="section-badge">탭해서 상세 보기</div>
+  </div>
+
+  <div class="roadmap-container" id="roadmap-container"></div>
+  <div class="spacer"></div>
+</div>
+
+
+<!-- ════════════════════════════ PAGE 3: TRACKER ════════════════════════════ -->
+<div class="page" id="page-tracker">
+
+  <div class="header">
+    <div class="header-eyebrow">Weekly Check</div>
+    <div class="header-title">이번 주 <em>기록</em></div>
+    <div class="header-sub">매일 체크하면 스트릭이 쌓여!</div>
+  </div>
+
+  <div style="padding: 20px 16px 0;">
+    <div class="tracker-card">
+      <div class="tracker-title">이번 주 창업 루틴 체크</div>
+      <div class="week-grid" id="week-grid"></div>
+      <div class="streak-row">
+        <span class="streak-fire">🔥</span>
+        <span class="streak-text"><strong id="streak-count">0</strong>일 연속 실천 중! 계속 이어가봐</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Monthly mini -->
+  <div class="section-header">
+    <div class="section-title">이달의 완료 목표</div>
+    <div class="section-badge" id="month-label"></div>
+  </div>
+
+  <div style="padding: 0 16px;" id="monthly-goals"></div>
+  <div class="spacer"></div>
+</div>
+
+
+<!-- ════════════════════════════ PAGE 4: NOTES ════════════════════════════ -->
+<div class="page" id="page-notes">
+
+  <div class="header">
+    <div class="header-eyebrow">Brain Dump</div>
+    <div class="header-title">창업 <em>노트</em></div>
+    <div class="header-sub">아이디어는 바로 잡아야 해</div>
+  </div>
+
+  <div class="section-header" style="padding-top:20px;">
+    <div class="section-title">빠른 메모</div>
+  </div>
+
+  <div class="note-section">
+    <div class="note-section-title">💡 오늘의 아이디어</div>
+    <textarea class="note-textarea" id="idea-note" placeholder="지금 떠오르는 아이디어, 브랜드 이름 후보, 제품 아이디어 뭐든 적어봐..."></textarea>
+  </div>
+
+  <div class="note-section">
+    <div class="note-section-title">🔍 리서치 메모</div>
+    <textarea class="note-textarea" id="research-note" placeholder="경쟁 브랜드 분석, 가격 조사, 원단 소싱 메모..."></textarea>
+  </div>
+
+  <button class="save-btn" onclick="saveNotes()">💾 저장하기</button>
+
+  <div class="section-header">
+    <div class="section-title">노트 카테고리</div>
+  </div>
+
+  <div class="note-grid">
+    <div class="note-card accent">
+      <div class="note-card-icon">🏷️</div>
+      <div class="note-card-title">브랜드 이름 후보</div>
+      <div class="note-card-desc">감각적이고 기억에 남는 이름 아이디어를 모아둬</div>
+    </div>
+    <div class="note-card">
+      <div class="note-card-icon">🎨</div>
+      <div class="note-card-title">무드보드</div>
+      <div class="note-card-desc">자라홈 감성 + 내 스타일 레퍼런스</div>
+    </div>
+    <div class="note-card">
+      <div class="note-card-icon">🧵</div>
+      <div class="note-card-title">소싱 리스트</div>
+      <div class="note-card-desc">원단업체, 봉제공장 후보 정리</div>
+    </div>
+    <div class="note-card">
+      <div class="note-card-icon">💰</div>
+      <div class="note-card-title">수익 계산</div>
+      <div class="note-card-desc">원가·판매가·마진율 시뮬레이션</div>
+    </div>
+    <div class="note-card">
+      <div class="note-card-icon">📱</div>
+      <div class="note-card-title">인스타 전략</div>
+      <div class="note-card-desc">계정 방향성, 피드 콘셉트, 해시태그</div>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+</div>
+
+
+<!-- ════════════════════════════ BOTTOM NAV ════════════════════════════ -->
+<div class="bottom-nav">
+  <div class="nav-item active" onclick="showPage('home',this)">
+    <div class="nav-icon">🏠</div>
+    <div class="nav-label">홈</div>
+  </div>
+  <div class="nav-item" onclick="showPage('roadmap',this)">
+    <div class="nav-icon">🗺️</div>
+    <div class="nav-label">로드맵</div>
+  </div>
+  <div class="nav-item" onclick="showPage('tracker',this)">
+    <div class="nav-icon">✅</div>
+    <div class="nav-label">트래커</div>
+  </div>
+  <div class="nav-item" onclick="showPage('notes',this)">
+    <div class="nav-icon">📝</div>
+    <div class="nav-label">노트</div>
+  </div>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────
+const ROADMAP = [
+  {
+    phase: 1,
+    name: "루틴 정착",
+    duration: "1–2개월",
+    status: "active",
+    desc: "창업 습관을 몸에 익히는 시기. 완벽하게 말고, 꾸준하게.",
+    tasks: [
+      "매일 밤 10시 창업 1시간 루틴 2주 연속 유지하기",
+      "경쟁 브랜드 10개 이상 분석 (가격·채널·타겟·스타일)",
+      "인스타그램 트렌드 + 네이버 쇼핑 키워드 조사",
+      "내가 만들고 싶은 제품 이미지 50장 이상 핀터레스트 수집",
+      "뷰티 블로그 운영 패턴 유지 (창업 준비와 병행 가능한 분량으로 조정)"
+    ]
+  },
+  {
+    phase: 2,
+    name: "브랜드 기획",
+    duration: "2–3개월차",
+    status: "upcoming",
+    desc: "내 브랜드의 이름, 콘셉트, 타겟, 제품 라인업 결정.",
+    tasks: [
+      "브랜드 이름 최종 결정 (도메인·인스타 아이디 선점)",
+      "타겟 페르소나 구체화 (2030 여성, 선물 구매 상황)",
+      "첫 제품 라인 결정: 파자마 or 쿠션커버 or 파우치 세트",
+      "브랜드 컬러·무드보드·로고 방향성 스케치",
+      "인스타그램 계정 개설 (비공개로 미리 준비)"
+    ]
+  },
+  {
+    phase: 3,
+    name: "소싱 & 샘플",
+    duration: "3–4개월차",
+    status: "upcoming",
+    desc: "실제 제품을 만들어보는 단계. 원단·공장 찾기.",
+    tasks: [
+      "동대문 원단시장 직접 방문 (주말 활용)",
+      "봉제 공장·제조업체 3곳 이상 컨택",
+      "샘플 1~2개 제작 + 원가 계산",
+      "사진 촬영 준비 (배경·소품·라이팅 세팅)",
+      "스마트스토어 사업자등록 준비 시작"
+    ]
+  },
+  {
+    phase: 4,
+    name: "채널 세팅",
+    duration: "4–5개월차",
+    status: "upcoming",
+    desc: "판매 채널 오픈. 인스타 + 스마트스토어 동시 준비.",
+    tasks: [
+      "스마트스토어 개설 + 첫 상품 등록",
+      "인스타그램 계정 공개 전환 + 피드 9장 세팅",
+      "상품 사진 촬영 (집에서도 가능, 자연광 활용)",
+      "첫 콘텐츠 기획: '이 브랜드는 이런 곳이에요' 스토리텔링",
+      "뷰티 블로그 팔로워에게 소프트 론칭 알리기"
+    ]
+  },
+  {
+    phase: 5,
+    name: "소프트 론칭",
+    duration: "5–6개월차",
+    status: "upcoming",
+    desc: "소규모로 판매 시작. 피드백 수집이 핵심.",
+    tasks: [
+      "첫 판매 시작 (지인 구매 포함, 부끄러워 말 것!)",
+      "구매 후기 적극 수집",
+      "배송·포장 프로세스 정립",
+      "수익·원가·재고 관리 엑셀 세팅",
+      "월 매출 목표: 첫 달 50만원 이상이면 성공"
+    ]
+  },
+  {
+    phase: 6,
+    name: "퇴사 준비",
+    duration: "6개월 이후",
+    status: "upcoming",
+    desc: "월 수익 200만원 이상 안정화 시 퇴사 타이밍 검토.",
+    tasks: [
+      "3개월 연속 월 매출 200만+ 달성 확인",
+      "퇴사 후 건강보험·세금 처리 계획",
+      "6개월치 생활비 비상금 확보 (남편 수입 외 별도)",
+      "브랜드 다음 시즌 제품 기획 완료",
+      "퇴사 → 풀타임 브랜드 운영 전환"
+    ]
+  }
+];
+
+const WEEKLY_GOALS = {
+  "1": ["경쟁 브랜드 3개 인스타 분석", "핀터레스트 무드보드 만들기 시작", "브랜드 이름 후보 10개 적어보기"],
+  "2": ["네이버 쇼핑 '파자마 선물' 키워드 조사", "자라홈·무인양품·모던하우스 가격 비교", "내가 좋아하는 패브릭 질감·패턴 정리"],
+  "3": ["타겟 고객 페르소나 초안 작성", "비슷한 컨셉 국내 소규모 브랜드 5개 찾기", "인스타그램 계정 이름 후보 5개"],
+  "4": ["브랜드 이름 최종 후보 3개로 압축", "도메인 이름 사용 가능 여부 확인", "첫 제품 아이템 1가지 결정"]
+};
+
+// ── STATE ─────────────────────────────────────────────────────────
+function loadState() {
+  try { return JSON.parse(localStorage.getItem('brandState') || '{}'); } catch(e) { return {}; }
+}
+function saveState(s) {
+  try { localStorage.setItem('brandState', JSON.stringify(s)); } catch(e) {}
+}
+let state = loadState();
+if (!state.todayTasks) state.todayTasks = {};
+if (!state.weekDays) state.weekDays = {};
+if (!state.notes) state.notes = { idea: '', research: '' };
+
+// ── DATE ──────────────────────────────────────────────────────────
+const DAYS_KO = ['일','월','화','수','목','금','토'];
+const MONTHS_KO = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+
+function formatDate(d) {
+  return `${d.getFullYear()}년 ${MONTHS_KO[d.getMonth()]} ${d.getDate()}일 (${DAYS_KO[d.getDay()]})`;
+}
+
+function getTodayTasks() {
+  const d = new Date();
+  const dow = d.getDay(); // 0=sun
+  if (dow === 0) {
+    return [
+      { id: 't1', text: '이번 주 회고 — 잘된 것 1가지, 부족한 것 1가지 적기', time: '자유롭게' },
+      { id: 't2', text: '다음 주 할 일 3가지 설정하기', time: '1시간' },
+      { id: 't3', text: '충분히 쉬기 🌿 번아웃 방지', time: '종일' }
+    ];
+  } else if (dow === 6) {
+    return [
+      { id: 't1', text: '딥워크 — 이번 단계 핵심 작업 2~3시간', time: '오전' },
+      { id: 't2', text: '레퍼런스 수집 or 무드보드 업데이트', time: '오후' },
+      { id: 't3', text: '다음 주 루틴 체크리스트 미리 세팅', time: '30분' }
+    ];
+  } else {
+    const tasks = [
+      { id: 't1', text: '뷰티 블로그 예약발행 or 짧은 업로드', time: '10분' },
+      { id: 't2', text: '창업 노트에 오늘 할 것 1가지 실행', time: '40분' },
+      { id: 't3', text: '진행 기록 + 내일 할 것 1줄 메모', time: '10분' }
+    ];
+    return tasks;
+  }
+}
+
+// ── RENDER HOME ───────────────────────────────────────────────────
+function renderHome() {
+  document.getElementById('today-date').textContent = formatDate(new Date());
+  const tasks = getTodayTasks();
+  const container = document.getElementById('today-tasks');
+  container.innerHTML = '';
+  tasks.forEach(t => {
+    const key = new Date().toDateString() + t.id;
+    const done = state.todayTasks[key];
+    const div = document.createElement('div');
+    div.className = 'today-task' + (done ? ' done' : '');
+    div.innerHTML = `
+      <div class="task-check">
+        <svg width="12" height="9" viewBox="0 0 12 9" fill="none">
+          <path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="task-text">${t.text}</div>
+      <div class="task-time">${t.time}</div>`;
+    div.onclick = () => {
+      state.todayTasks[key] = !state.todayTasks[key];
+      saveState(state);
+      renderHome();
+      updateProgress();
+    };
+    container.appendChild(div);
+  });
+}
+
+function updateProgress() {
+  const done = Object.values(state.todayTasks).filter(Boolean).length;
+  const total = Math.max(done, 3);
+  const pct = Math.min(5 + Math.floor((done / total) * 15), 20);
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-bar').style.width = pct + '%';
+}
+
+// ── RENDER ROADMAP ────────────────────────────────────────────────
+function renderRoadmap() {
+  const c = document.getElementById('roadmap-container');
+  c.innerHTML = '';
+  ROADMAP.forEach((p, i) => {
+    const item = document.createElement('div');
+    item.className = 'phase-item';
+    item.innerHTML = `
+      <div class="phase-line-col">
+        <div class="phase-dot-circle ${p.status}">${p.phase}</div>
+        ${i < ROADMAP.length - 1 ? '<div class="phase-connector"></div>' : ''}
+      </div>
+      <div class="phase-content">
+        <div class="phase-title-row">
+          <div class="phase-name">${p.name}</div>
+          <div class="phase-duration ${p.status === 'active' ? 'active-badge' : ''}">${p.duration}</div>
+        </div>
+        <div class="phase-desc">${p.desc}</div>
+        <button class="expand-btn" onclick="togglePhase(event, this)">
+          <span class="expand-icon">▶</span> 세부 할 일 보기
+        </button>
+        <div class="phase-tasks-list">
+          ${p.tasks.map(t => `<div class="phase-task-item">${t}</div>`).join('')}
+        </div>
+      </div>`;
+    c.appendChild(item);
+  });
+}
+
+function togglePhase(e, btn) {
+  e.stopPropagation();
+  const item = btn.closest('.phase-item');
+  const list = item.querySelector('.phase-tasks-list');
+  item.classList.toggle('expanded');
+  list.classList.toggle('open');
+}
+
+// ── RENDER TRACKER ────────────────────────────────────────────────
+function renderTracker() {
+  const today = new Date();
+  const monday = new Date(today);
+  monday.setDate(today.getDate() - ((today.getDay() + 6) % 7));
+  const labels = ['월','화','수','목','금','토','일'];
+  const grid = document.getElementById('week-grid');
+  grid.innerHTML = '';
+  let streak = 0;
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(monday);
+    d.setDate(monday.getDate() + i);
+    const key = d.toDateString();
+    const isToday = d.toDateString() === today.toDateString();
+    const isPast = d < today && !isToday;
+    const isDone = state.weekDays[key];
+    if (isDone) streak++; else if (isPast) streak = 0;
+    const col = document.createElement('div');
+    col.className = 'week-day';
+    col.innerHTML = `
+      <div class="week-day-label">${labels[i]}</div>
+      <div class="week-day-dot ${isToday ? 'today' : ''} ${isDone ? 'done' : ''} ${isPast && !isDone ? 'missed' : ''}"
+           onclick="toggleWeekDay('${key}')">${d.getDate()}</div>`;
+    grid.appendChild(col);
+  }
+  document.getElementById('streak-count').textContent = streak;
+
+  // month label
+  document.getElementById('month-label').textContent = MONTHS_KO[today.getMonth()];
+
+  // monthly goals
+  const week = Math.ceil(today.getDate() / 7);
+  const goals = WEEKLY_GOALS[String(Math.min(week, 4))] || WEEKLY_GOALS["1"];
+  const gc = document.getElementById('monthly-goals');
+  gc.innerHTML = `
+    <div style="background:var(--warm-white);border:1px solid var(--border);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:10px;">
+      ${goals.map((g, i) => `
+        <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--charcoal);line-height:1.5;">
+          <span style="color:var(--terracotta);font-weight:700;font-size:11px;padding-top:2px;flex-shrink:0;">${i+1}</span>
+          <span>${g}</span>
+        </div>`).join('')}
+    </div>`;
+}
+
+function toggleWeekDay(key) {
+  state.weekDays[key] = !state.weekDays[key];
+  saveState(state);
+  renderTracker();
+}
+
+// ── NOTES ─────────────────────────────────────────────────────────
+function renderNotes() {
+  document.getElementById('idea-note').value = state.notes.idea || '';
+  document.getElementById('research-note').value = state.notes.research || '';
+}
+
+function saveNotes() {
+  state.notes.idea = document.getElementById('idea-note').value;
+  state.notes.research = document.getElementById('research-note').value;
+  saveState(state);
+  const btn = document.querySelector('.save-btn');
+  btn.textContent = '✅ 저장됐어!';
+  setTimeout(() => btn.textContent = '💾 저장하기', 1800);
+}
+
+// ── PAGE NAV ──────────────────────────────────────────────────────
+function showPage(name, navEl) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  navEl.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ── INIT ──────────────────────────────────────────────────────────
+renderHome();
+renderRoadmap();
+renderTracker();
+renderNotes();
+updateProgress();
+</script>
+</body>
+</html>
